@@ -1,0 +1,4 @@
+include CAWPr/schema.sql
+graft CAWPr/static
+graft CAWPr/templates
+global-exclude *.pyc

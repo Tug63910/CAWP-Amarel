@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}New{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+		<label for="url">url</label>
+		<input name="url" id="url" value="{{ request.form['url'] }}" required>
+		<label for="state">state</label>
+		<textarea name="state" id="state">{{ request.form['state'] }}</textarea>
+		<label for="level">level</label>
+		<textarea name="level" id="level">{{ request.form['level'] }}</textarea>
+		<label for="office">office</label>
+		<textarea name="office" id="office">{{ request.form['office'] }}</textarea>
+		<label for="profession">profession</label>
+		<textarea name="profession" id="profession">{{ request.form['profession'] }}</textarea>
+		<input type="submit" value="Save">
+	</form>
+{% endblock %}

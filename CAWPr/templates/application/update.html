@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}Update "{{ post['url'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+		<label for="url">Url</label>
+		<input name="url" id="url"
+			value="{{ request.form['url'] or post['url'] }}" required>
+		<label for="state">state</label>
+		<textarea name="state" id="state"
+			value="{{ request.form['state'] or post['state'] }}" required></textarea>
+		<label for="level">level</label>
+		<textarea name="level" id="level"
+			value="{{ request.form['level'] or post['level'] }}" required></textarea>
+		<label for="office">office</label>
+		<textarea name="office" id="office"
+			value="{{ request.form['office'] or post['office'] }}" required></textarea>
+		<label for="profession">profession</label>
+		<input name="profession" id="profession"
+			value="{{ request.form['profession'] or post['profession'] }}" required></textarea>
+		<input type="submit" value="Save">
+	</form>
+	<hr>
+	<form action="{{ url_for('application.delete', id=post['id']) }}" method="post">
+		<input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+	</form>
+{% endblock %}
+

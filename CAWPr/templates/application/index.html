@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}2020 Candidates{% endblock %}</h1>
+	<a class="action" href="{{ url_for('application.create') }}">New</a>
+{% endblock %}
+
+{% block content %}
+	{% for post in posts %}
+		<article class="post">
+			<header>
+				<div>
+					<h1>{{ post['url'] }}</h1>
+				</div>
+				<a class="action" href="{{url_for('application.update', id=post['id']) }}">Update</a>
+			</header>
+			<p class="body">{{ post['state'] }}</p>
+			<p class="body">{{ post['level'] }}</p>
+			<p class="body">{{ post['office'] }}</p>
+			<p class="body">{{ post['profession'] }}</p>
+		</article>
+		{% if not loop.last %}
+			<hr>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
+
