@@ -14,6 +14,7 @@ CREATE TABLE post (
 	state TEXT NOT NULL,
 	level TEXT NOT NULL,
 	office TEXT NOT NULL,
-	profession TEXT NOT NULL
+	profession TEXT NOT NULL,
+	text TEXT NOT NULL
 );
 

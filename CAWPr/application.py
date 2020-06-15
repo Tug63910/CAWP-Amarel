@@ -6,6 +6,7 @@ from werkzeug.exceptions import abort
 
 from CAWPr.auth import login_required
 from CAWPr.db import get_db
+from CAWPr.models.predict import classifier
 
 bp=Blueprint('application',__name__)
 
@@ -24,10 +25,6 @@ def index():
 def create():
 	if request.method=='POST':
 		url=request.form['url']
-		state=request.form['state']
-		level=request.form['level']
-		office=request.form['office']
-		profession=request.form['profession']
 		error=None
 
 		if not url:
@@ -36,21 +33,23 @@ def create():
 		if error is not None:
 			flash(error)
 		else:
+			#post={'state':'MA', 'level':'Federal', 'office':'Senate', 'profession':'teacher',}
+			post=classifier(url)
 			db=get_db()
 			db.execute(
-				'INSERT INTO post (url, state, level, office, profession)'
-				' VALUES (?,?,?,?,?)',
-				(url, state, level, office, profession)		
+				'INSERT INTO post (url, state, level, office, profession,text)'
+				' VALUES (?,?,?,?,?,?)',
+				(url,post['state'],post['level'],post['office'],post['profession'], post['text'])
 			)
-
 			db.commit()
+			post=db.execute('SELECT * FROM post p where url=?',(url,)).fetchone()
 			return redirect(url_for('application.index'))
 
 	return render_template('application/create.html')
 
 def get_post(id):
 	post=get_db().execute(
-		'SELECT p.id, url, state, level, office, profession'
+		'SELECT p.id, url, state, level, office, profession, text'
 		' FROM post p'
 		' WHERE p.id=?',
 		(id,)
@@ -67,11 +66,12 @@ def update(id):
 	post=get_post(id)
 
 	if request.method=='POST':
-		url=request.form['url']
+		url=post['url']
 		state=request.form['state']
 		level=request.form['level']
 		office=request.form['office']
 		profession=request.form['profession']
+		text=request.form["text"]
 		error=None
 
 		if not url:
@@ -82,9 +82,9 @@ def update(id):
 		else:
 			db=get_db()
 			db.execute(
-				'UPDATE post SET url=?, state=?, level=?, office=?, profession=?'
+				'UPDATE post SET url=?, state=?, level=?, office=?, profession=?, text=?'
 				' WHERE id=?',
-				(url,state,level,office,profession,id)
+				(url,state,level,office,profession,text,id)
 			)
 			db.commit()
 			return redirect(url_for('application.index'))

@@ -2,26 +2,34 @@
 
 {% block header %}
 	<h1>{% block title %}2020 Candidates{% endblock %}</h1>
-	<a class="action" href="{{ url_for('application.create') }}">New</a>
 {% endblock %}
 
 {% block content %}
-	{% for post in posts %}
-		<article class="post">
-			<header>
-				<div>
-					<h1>{{ post['url'] }}</h1>
-				</div>
-				<a class="action" href="{{url_for('application.update', id=post['id']) }}">Update</a>
-			</header>
-			<p class="body">{{ post['state'] }}</p>
-			<p class="body">{{ post['level'] }}</p>
-			<p class="body">{{ post['office'] }}</p>
-			<p class="body">{{ post['profession'] }}</p>
-		</article>
-		{% if not loop.last %}
-			<hr>
-		{% endif %}
-	{% endfor %}
+	<table>
+		<caption style="caption-side: bottom; margin: 20px;">
+			<form action="{{url_for('application.create') }}">
+				<input name="New" type="submit" value="New">
+			</form> 
+			<!--<a class="action" href="{{url_for('application.create') }}">New</a>-->
+		</caption>
+		<tr>
+			<th>URL</th>
+			<th>state</th>
+			<th>level</th>
+			<th>office</th>
+			<th>profession</th>
+		</tr>
+		{% for post in posts %}
+			<tr>
+				<td>{{ post['url'] }}</td>
+				<td>{{ post['state'] }}</td>
+				<td>{{ post['level'] }}</td>
+				<td>{{ post['office'] }}</td>
+				<td>{{ post['profession'] }}</td>
+				<td><a class="action" href="{{url_for('application.update', id=post['id']) }}">Edit</a></td>
+
+			</tr>
+		{% endfor %}
+	</table>
 {% endblock %}
 
