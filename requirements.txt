@@ -1,5 +1,8 @@
+setuptools
+wheel
 flask
 python-dotenv
 scrapy
 html2text
 beautifulsoup4
+gunicorn
