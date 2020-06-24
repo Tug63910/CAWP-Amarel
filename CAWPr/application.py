@@ -4,6 +4,7 @@ from flask import (
 
 from werkzeug.exceptions import abort
 
+
 from CAWPr.auth import login_required
 from CAWPr.db import get_db
 from CAWPr.models.predict import classifier
@@ -34,7 +35,8 @@ def create():
 			flash(error)
 		else:
 			#post={'state':'MA', 'level':'Federal', 'office':'Senate', 'profession':'teacher',}
-			post=classifier(url)
+			text="This is text"
+			post=classifier(text)
 			db=get_db()
 			db.execute(
 				'INSERT INTO post (url, state, level, office, profession,text)'
