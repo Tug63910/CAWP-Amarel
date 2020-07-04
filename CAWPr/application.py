@@ -1,9 +1,10 @@
+import os
+import subprocess
+import csv
 from flask import (
 	Blueprint, flash, g, redirect, render_template, request, url_for
 )
-
 from werkzeug.exceptions import abort
-
 
 from CAWPr.auth import login_required
 from CAWPr.db import get_db
@@ -21,6 +22,7 @@ def index():
 	).fetchall()
 	return render_template('application/index.html',posts=posts)
 
+
 @bp.route('/create', methods=('GET','POST'))
 @login_required
 def create():
@@ -34,17 +36,22 @@ def create():
 		if error is not None:
 			flash(error)
 		else:
-			#post={'state':'MA', 'level':'Federal', 'office':'Senate', 'profession':'teacher',}
-			text="This is text"
-			post=classifier(text)
 			db=get_db()
+			#use scrapy for text, stored in temp.cvs
+			CAWPwd=os.path.join(os.getcwd(),"CAWPr/CAWPspider")
+			subprocess.run(["scrapy","crawl","-a","url="+url,"candidate"],cwd=CAWPwd)
+			#concatenate text in temp.cvs to get site text.
+			with open(os.path.join(os.getcwd(),"CAWPr/CAWPspider/temp.csv"),'rt') as fin:
+				cin=csv.DictReader(fin)
+				site_data=[row['text'] for row in cin]
+			text='::'.join(site_data)
+			entry=classifier(text)
 			db.execute(
 				'INSERT INTO post (url, state, level, office, profession,text)'
 				' VALUES (?,?,?,?,?,?)',
-				(url,post['state'],post['level'],post['office'],post['profession'], post['text'])
+				(url,entry['state'],entry['level'],entry['office'],entry['profession'], entry['text'])
 			)
 			db.commit()
-			post=db.execute('SELECT * FROM post p where url=?',(url,)).fetchone()
 			return redirect(url_for('application.index'))
 
 	return render_template('application/create.html')
@@ -101,3 +108,4 @@ def delete(id):
 	db.execute('DELETE FROM post WHERE id=?', (id,))
 	db.commit()
 	return redirect(url_for('application.index'))
+

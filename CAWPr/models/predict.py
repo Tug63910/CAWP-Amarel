@@ -1,6 +1,6 @@
-def classifier(url):
+def classifier(text):
 	predict={}
-	predict['text']="This is the text"
+	predict['text']=text
 	predict['state']="NY"
 	predict['level']="state"
 	predict['office']="mayor"

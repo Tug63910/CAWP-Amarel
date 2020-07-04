@@ -6,8 +6,8 @@
 
 {% block content %}
 	<form method="post">
-		<label style="padding-right: 62px;" for="url">url</label>
-		<input name="url" id="url" value="{{ request.form['url'] }}" required>
+		<label style="font-weight: bold; margin-bottom: 0.5em;" for="url">url</label>
+		<input style="width: 250px; margin-bottom: 0.5em;" name="url" id="url" value="{{ request.form['url'] }}" required>
 		<input type="submit" value="Submit">
 	</form>
 {% endblock %}

@@ -11,10 +11,10 @@ CREATE TABLE post (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	url TEXT NOT NULL,
-	state TEXT NOT NULL,
-	level TEXT NOT NULL,
-	office TEXT NOT NULL,
-	profession TEXT NOT NULL,
-	text TEXT NOT NULL
+	state TEXT ,
+	level TEXT ,
+	office TEXT ,
+	profession TEXT ,
+	text TEXT 
 );
 

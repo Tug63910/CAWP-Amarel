@@ -8,7 +8,7 @@
 import scrapy
 
 
-class CawpspiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+class SiteData(scrapy.Item):
+    text=scrapy.Field()
+    url=scrapy.Field()
     pass
