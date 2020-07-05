@@ -1,6 +1,5 @@
 import os
 import subprocess
-import csv
 from flask import (
 	Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -9,6 +8,8 @@ from werkzeug.exceptions import abort
 from CAWPr.auth import login_required
 from CAWPr.db import get_db
 from CAWPr.models.predict import classifier
+
+from CAWPr.CAWPspider.CAWPspider.spiders.gs_utils import download_blob
 
 bp=Blueprint('application',__name__)
 
@@ -26,6 +27,9 @@ def index():
 @bp.route('/create', methods=('GET','POST'))
 @login_required
 def create():
+	BUCKET_NAME="cawp-47548.appspot.com"
+	REMOTE_BLOB_NAME="testGAE"
+
 	if request.method=='POST':
 		url=request.form['url']
 		error=None
@@ -41,10 +45,11 @@ def create():
 			CAWPwd=os.path.join(os.getcwd(),"CAWPr/CAWPspider")
 			subprocess.run(["scrapy","crawl","-a","url="+url,"candidate"],cwd=CAWPwd)
 			#concatenate text in temp.cvs to get site text.
-			with open(os.path.join(os.getcwd(),"CAWPr/CAWPspider/temp.csv"),'rt') as fin:
-				cin=csv.DictReader(fin)
-				site_data=[row['text'] for row in cin]
-			text='::'.join(site_data)
+			#with open(os.path.join(os.getcwd(),"CAWPr/CAWPspider/temp.csv"),'rt') as fin:
+			#	cin=csv.DictReader(fin)
+			#	site_data=[row['text'] for row in cin]
+			#text='::'.join(site_data)
+			text=download_blob(BUCKET_NAME,REMOTE_BLOB_NAME).decode('utf-8')
 			entry=classifier(text)
 			db.execute(
 				'INSERT INTO post (url, state, level, office, profession,text)'

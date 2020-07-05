@@ -1,0 +1,4 @@
+runtime: python36
+entrypoint: gunicorn -b :$PORT "CAWPr:create_app()" --timeout 300
+env_variables:
+	GOOGLE_CLOUD_BUCKET: "gs://cawp-47548.appspot.com/"

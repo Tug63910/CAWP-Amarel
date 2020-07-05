@@ -13,5 +13,5 @@ dist/
 build/
 *.egg-info/
 
-CAWPr/CAWPspider/temp.csv
+readme.txt
 

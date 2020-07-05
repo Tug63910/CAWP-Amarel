@@ -1,6 +1,8 @@
 import os
-
 from flask import Flask
+
+#For running on local terminal, set Google credentials
+os.environ['GOOGLE_APPLICATION_CREDENTIALs']='keyfile.json'
 
 def create_app(test_config=None):
 	#create and config the app

@@ -2,7 +2,9 @@ setuptools
 wheel
 flask
 python-dotenv
+Watchdog
 scrapy
 html2text
 beautifulsoup4
 gunicorn
+google-cloud-storage
