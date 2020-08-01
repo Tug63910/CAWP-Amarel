@@ -1,7 +1,11 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from ..items import SiteData
 from urllib.parse import urlparse
+from .gs_utils import upload_blob, download_blob
+import html2text
+
+BUCKET_NAME="cawp-47548.appspot.com"
+REMOTE_BLOB_NAME="testGAE"
 
 class CandidateSpider(CrawlSpider):
     name="candidate"
@@ -11,13 +15,15 @@ class CandidateSpider(CrawlSpider):
         url_domain=urlparse(url).netloc
         self.start_urls=[url]
         self.allowed_domains=[url_domain]
-        self.rules=[Rule(LinkExtractor(allow=r'.*'),callback='parse_links', follow=True, cb_kwargs={'url': url})]
+        self.rules=[Rule(LinkExtractor(allow=r'.*'),callback='parse_links', follow=False, cb_kwargs={'url': url})]
+        upload_blob(BUCKET_NAME,"",REMOTE_BLOB_NAME)
         super().__init__(*args, **kwargs)
 
 
     def parse_links(self,response,url):
-        sitedata=SiteData()
-        sitedata['text']=response.text
-        sitedata['url']=response.url
-        return sitedata
+        html=response.text
+        cleanhtml=html2text.html2text(html)
+        text=download_blob(BUCKET_NAME,REMOTE_BLOB_NAME).decode('utf-8')
+        textfile=text+"\n"+cleanhtml
+        upload_blob(BUCKET_NAME,textfile,REMOTE_BLOB_NAME)
 	

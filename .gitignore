@@ -13,5 +13,9 @@ dist/
 build/
 *.egg-info/
 
-CAWPr/CAWPspider/temp.csv
+readme.txt
+cloud_sql_proxy
+
+CAWPr/readme.txt
+
 

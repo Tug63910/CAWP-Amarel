@@ -11,6 +11,8 @@ setup(
 		'python-dotenv',
 		'scrapy',
 		'html2text',
+		'google-cloud-storage',
 		'beautifulsoup4',
+		'psycopg2',
 	],
 )
