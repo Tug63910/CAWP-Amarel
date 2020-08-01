@@ -26,7 +26,7 @@
 				<td>{{ post['level'] }}</td>
 				<td>{{ post['office'] }}</td>
 				<td>{{ post['profession'] }}</td>
-				<td><a class="action" href="{{url_for('application.update', id=post['id']) }}">Edit</a></td>
+				<td><a class="action" href="{{url_for('application.update', post_id=post['id']) }}">Edit</a></td>
 
 			</tr>
 		{% endfor %}

@@ -15,7 +15,8 @@ class CandidateSpider(CrawlSpider):
         url_domain=urlparse(url).netloc
         self.start_urls=[url]
         self.allowed_domains=[url_domain]
-        self.rules=[Rule(LinkExtractor(allow=r'.*'),callback='parse_links', follow=True, cb_kwargs={'url': url})]
+        self.rules=[Rule(LinkExtractor(allow=r'.*'),callback='parse_links', follow=False, cb_kwargs={'url': url})]
+        upload_blob(BUCKET_NAME,"",REMOTE_BLOB_NAME)
         super().__init__(*args, **kwargs)
 
 

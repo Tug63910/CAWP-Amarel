@@ -15,23 +15,23 @@ def register():
 		username=request.form['username']
 		password=request.form['password']
 		db=get_db()
+		db.execute(
+			'SELECT id from users WHERE username=%s;',(username,)
+		)
 		error=None
 
 		if not username:
 			error='Username required'
 		elif not password:
 			error='Password required'
-		elif db.execute(
-			'SELECT id FROM user WHERE username=?', (username,)
-		).fetchone() is not None:
+		elif db.fetchone() is not None:
 			error='User {} is already registered.'.format(username)
 
 		if error is None:
 			db.execute(
-				'INSERT INTO user (username, password) VALUES (?, ?)',
+				'INSERT INTO users (username, password) VALUES (%s,%s);',
 				(username, generate_password_hash(password))
 			)
-			db.commit()
 			return redirect(url_for('auth.login'))
 
 		flash(error)
@@ -45,9 +45,10 @@ def login():
 		password=request.form['password']
 		db=get_db()
 		error=None
-		user=db.execute(
-			'SELECT * FROM user WHERE username=?', (username,)
-		).fetchone()
+		db.execute(
+			'SELECT * FROM users WHERE username=%s;', (username,)
+		)
+		user=db.fetchone()
 
 		if user is None:
 			error='Incorrect username.'
@@ -70,9 +71,11 @@ def load_logged_in_user():
 	if user_id is None:
 		g.user=None
 	else:
-		g.user=get_db().execute(
-			'SELECT * From user WHERE id = ?', (user_id,)
-		).fetchone()
+		db=get_db()
+		db.execute(
+			'SELECT * From users WHERE id = %s;', (user_id,)
+		)
+		g.user=db.fetchone()
 
 @bp.route('/logout')
 def logout():

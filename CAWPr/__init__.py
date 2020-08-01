@@ -1,8 +1,6 @@
 import os
 from flask import Flask
-
-#For running on local terminal, set Google credentials
-os.environ['GOOGLE_APPLICATION_CREDENTIALs']='keyfile.json'
+from CAWPr.CAWPspider.CAWPspider.spiders.gs_utils import upload_blob
 
 def create_app(test_config=None):
 	#create and config the app
@@ -10,7 +8,6 @@ def create_app(test_config=None):
 
 	app.config.from_mapping(
 		SECRET_KEY='dev',
-		DATABASE=os.path.join(app.instance_path,'CAWPr.sqlite'),
 	)
 
 	if test_config is None:
@@ -40,6 +37,13 @@ def create_app(test_config=None):
 
 	from . import db
 	db.init_app(app)
+
+	#Initialize postgreSQL
+	#If BLOB=testgae does not exist, create it.
+	#If it does exist, empty it.
+	BUCKET_NAME="cawp-47548.appspot.com"
+	REMOTE_BLOB_NAME="testGAE"
+	upload_blob(BUCKET_NAME,"",REMOTE_BLOB_NAME)
 
 	return app
 

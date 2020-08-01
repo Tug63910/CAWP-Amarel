@@ -54,7 +54,7 @@
 		<div class="row" style="display: inline">
 			<input type="submit" value="Save">
 		</div>
-			<input class="danger" type="submit" value="Delete" formaction="{{ url_for('application.delete', id=post['id']) }}" onclick="return confirm('Are you sure?');">
+		<input class="danger" type="submit" value="Delete" formaction="{{ url_for('application.delete', post_id=post['id']) }}" onclick="return confirm('Are you sure?');">
 	</form>
 {% endblock %}
 

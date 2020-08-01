@@ -17,3 +17,12 @@ def download_blob(bucket_name, source_blob_name):
 	text=blob.download_as_string()
 
 	return text
+
+def exists_blob(bucket_name, remote_blob_name):
+
+	storage_client=storage.Client()
+	bucket=storage_client.bucket(bucket_name)
+	blob=bucket.blob(remote_blob_name)
+	
+	return blob.exists()
+
