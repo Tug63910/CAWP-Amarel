@@ -1,5 +1,6 @@
 import os
-from flask import Flask
+from flask import Flask, current_app, g
+from flask.cli import with_appcontext
 from CAWPr.CAWPspider.CAWPspider.spiders.gs_utils import upload_blob
 
 def create_app(test_config=None):
@@ -38,12 +39,9 @@ def create_app(test_config=None):
 	from . import db
 	db.init_app(app)
 
-	#Initialize postgreSQL
-	#If BLOB=testgae does not exist, create it.
-	#If it does exist, empty it.
-	BUCKET_NAME="cawp-47548.appspot.com"
-	REMOTE_BLOB_NAME="testGAE"
-	upload_blob(BUCKET_NAME,"",REMOTE_BLOB_NAME)
+	from .bucket import GSbucket
+	bucket=GSbucket()
+	upload_blob(bucket.bucket,"",bucket.blob)
 
 	return app
 

@@ -89,9 +89,3 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-#Configure outpu file
-FEEDS={'temp.csv':{
-        'format':'csv'
-       },
-}
-FEED_EXPORT_FIELDS=["url","text"]

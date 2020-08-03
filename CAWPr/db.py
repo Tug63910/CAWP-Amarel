@@ -10,7 +10,6 @@ class Database:
 		self.host=environ.get('DATABASE_HOST')
 		self.username=environ.get('DATABASE_USERNAME')
 		self.password=environ.get('DATABASE_PASSWORD')
-		self.port=environ.get('DATABASE_PORT')
 		self.dbname=environ.get('DATABASE_NAME')
 
 def get_db():
@@ -18,7 +17,6 @@ def get_db():
 	if 'db' not in g:
 		g.db=psycopg2.connect(
 			host=config.host,
-			port=config.port,
 			user=config.username,
 			password=config.password,
 			dbname=config.dbname,

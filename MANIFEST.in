@@ -2,6 +2,5 @@ include CAWPr/schema.sql
 graft CAWPr/static
 graft CAWPr/templates
 graft CAWPr/models
-graft CAWPr/models
 graft CAWPr/CAWPspider
 global-exclude *.pyc

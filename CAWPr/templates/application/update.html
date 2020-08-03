@@ -11,7 +11,58 @@
 				<label for="state">state</label>
 			</div>
 			<div class="col-75">
-				<input name="state" id="state" value="{{ request.form['state'] or post['state'] }}" >
+				<select name="state" id="state" value="{{ request.form['state'] or post['state'] }}" >
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AZ">AZ</option>
+					<option value="AR">AR</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="IA">IA</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="ME">ME</option>
+					<option value="MD">MD</option>
+					<option value="MA">MA</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MS">MS</option>
+					<option value="MO">MO</option>
+					<option value="MT">MT</option>
+					<option value="NE">NE</option>
+					<option value="NV">NV</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NY">NY</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WV">WV</option>
+					<option value="WI">WI</option>
+				</select>
 			</div>
 		</div>
 		<div class="row">
@@ -31,7 +82,18 @@
 				<label for="office">office</label>
 			</div>
 			<div class="col-75">
-				<input name="office" id="office" value="{{ request.form['office'] or post['office'] }}" >
+				<select name="office" id="office" value="{{ request.form['office'] or post['office'] }}" >
+					<option value="governor">governor</option>
+					<option value="attorney general">attorney general</option>
+					<option value="senator">senator</option>
+					<option value="representative">representative</option>
+					<option value="judge">judge</option>
+					<option value="mayor">mayor</option>
+					<option value="councilman">councilman</option>
+					<option value="other federal">other federal</option>
+					<option value="other state">other state</option>
+					<option value="other local">other local</option>
+				</select>
 			</div>
 		</div>
 		<div class="row">
@@ -39,7 +101,19 @@
 				<label for="state">profession</label>
 			</div>
 			<div class="col-75">
-				<input name="profession" id="profession" value="{{ request.form['profession'] or post['profession'] }}" >
+				<select name="profession" id="profession" value="{{ request.form['profession'] or post['profession'] }}" >
+					<option value="doctor">doctor</option>
+					<option value="lawyer">lawyer</option>
+					<option value="teacher">teacher</option>
+					<option value="military">military</option>
+					<option value="activist">activist</option>
+					<option value="academia">academia</option>
+					<option value="business">business</option>
+					<option value="retired">retired</option>
+					<option value="entertainment">entertainment</option>
+					<option value="journalism">journalism</option>
+					<option value="other">other</option>
+				</select>
 			</div>
 		</div>
 		<div class="row">
