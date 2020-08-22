@@ -9,6 +9,7 @@ import scrapy
 
 
 class SiteData(scrapy.Item):
-    text=scrapy.Field()
-    url=scrapy.Field()
-    pass
+	text=scrapy.Field()
+	url=scrapy.Field()
+	root_domain=scrapy.Field()
+	pass

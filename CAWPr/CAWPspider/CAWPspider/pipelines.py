@@ -8,7 +8,13 @@ from .items import SiteData
 import html2text
 
 class CawpspiderPipeline(object):
-    def process_item(self, sitedata, spider):
-        text=html2text.html2text(sitedata['text'])         
-        sitedata['text']=text
-        return sitedata
+	def process_item(self, sitedata, spider):
+		h=htm2text.HTML2Text()		   
+		h.ignore_images=True
+		h.re_space=True
+		h.skip_internal_links=True
+		h.ignore_links=True
+		h.single_line_break=True
+		cleantext=h.handle(sitedata['text'])
+		sitedata['text']=cleantext
+		return sitedata
