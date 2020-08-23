@@ -96,4 +96,4 @@ ITEM_PIPELINES = {
 #	},
 #}
 
-#LOG_LEVEL='info'
+LOG_LEVEL='WARNING'
