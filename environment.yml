@@ -1,0 +1,21 @@
+name: CAWP
+channels:
+    - fastai
+    - pytorch
+    - conda-forge
+    - anaconda
+dependencies:
+    - python=3.7
+    - fastai
+    - flask
+    - python-dotenv
+    - watchdog
+    - scrapy
+    - html2text
+    - gunicorn
+    - psycopg2
+    - google-cloud-storage
+    - git
+    - postgresql
+    - google-cloud-sdk
+

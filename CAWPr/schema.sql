@@ -11,6 +11,7 @@ CREATE TABLE post (
 	id SERIAL PRIMARY KEY,
 	created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	url TEXT NOT NULL,
+    party TEXT ,
 	state TEXT ,
 	level TEXT ,
 	office TEXT ,

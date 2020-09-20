@@ -14,6 +14,7 @@
 		</caption>
 		<tr>
 			<th>URL</th>
+            <th>party</th>
 			<th>state</th>
 			<th>level</th>
 			<th>office</th>
@@ -22,6 +23,7 @@
 		{% for post in posts %}
 			<tr>
 				<td>{{ post['url'] }}</td>
+                <td>{{ post['party'] }}</td>
 				<td>{{ post['state'] }}</td>
 				<td>{{ post['level'] }}</td>
 				<td>{{ post['office'] }}</td>

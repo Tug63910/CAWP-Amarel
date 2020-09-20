@@ -1,11 +1,10 @@
-setuptools
-wheel
+torch
+torchvision
+fastai
 flask
 python-dotenv
-Watchdog
+watchdog
 scrapy
 html2text
-beautifulsoup4
 gunicorn
-google-cloud-storage
 psycopg2

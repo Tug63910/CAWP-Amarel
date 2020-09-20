@@ -2,7 +2,7 @@
 def index():
 	db=get_db()
 	db.execute(
-		'SELECT p.id,url,state,level,office,profession'
+		'SELECT p.id,url,party,state,level,office,profession'
 		' FROM post p'
 		' ORDER BY id ASC;'
 	)

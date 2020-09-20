@@ -13,7 +13,7 @@ dist/
 build/
 *.egg-info/
 
-readme.txt
+README.txt
 cloud_sql_proxy
 
 CAWPr/readme.txt

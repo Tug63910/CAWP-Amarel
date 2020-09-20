@@ -1,6 +1,6 @@
 .gcloudignore
 .git
 .gitignore
-
+environment.yml
 #!include:.gitignore
 
