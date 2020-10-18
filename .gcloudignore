@@ -3,4 +3,4 @@
 .gitignore
 environment.yml
 #!include:.gitignore
-
+!CAWPr/models/export.pkl
