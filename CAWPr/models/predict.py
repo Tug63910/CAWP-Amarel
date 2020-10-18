@@ -1,6 +1,10 @@
 import random
+import os
+from fastai.text.all import *
 
 def classifier(text):
+    cwd=os.path.join(os.getcwd(),'CAWPr','models')
+    learn=load_learner(os.path.join(cwd,"export.pkl"))
     party=['D','R','O']
     level=['federal','state','local']
     office=['governor','attorney general','senator','representative','judge','mayor','councilman','other federal','other state','other local']
@@ -8,7 +12,8 @@ def classifier(text):
     state=['AL','AK','AZ','AR','CA','CO','CT','DC','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
     predict={}
     predict['text']=text
-    predict['party']=party[random.randint(0,len(party)-1)]
+    predict['party']=str(learn.predict(text)[0])
+    #predict['party']=party[random.randint(0,len(party)-1)]
     predict['state']=state[random.randint(0,len(state)-1)]
     predict['level']=level[random.randint(0,len(level)-1)]
     predict['office']=office[random.randint(0,len(office)-1)]

@@ -1,6 +1,8 @@
-torch
-torchvision
-fastai
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.6.0+cpu
+torchvision==0.7.0+cpu
+fastai==2.0.13
+fastcore==1.0.12
 flask
 python-dotenv
 watchdog
@@ -8,3 +10,7 @@ scrapy
 html2text
 gunicorn
 psycopg2
+pip == 20.1.1
+setuptools == 47.1.0
+google-cloud-storage
+spacy == 2.3.1

@@ -6,8 +6,9 @@ channels:
     - anaconda
 dependencies:
     - python=3.7
-    - fastai
+    - fastai=2.0.13
     - flask
+    - fastcore=1.0.12
     - python-dotenv
     - watchdog
     - scrapy
@@ -18,4 +19,5 @@ dependencies:
     - git
     - postgresql
     - google-cloud-sdk
-
+    - spacy=2.3.1
+    - pip=20.1.1

@@ -1,5 +1,6 @@
 runtime: python37
-entrypoint: gunicorn -b :$PORT "CAWPr:create_app()" --timeout 300
+entrypoint: gunicorn -b :$PORT "CAWPr:create_app()" --timeout 900
+instance_class: F4
 env_variables:
     GOOGLE_CLOUD_BUCKET: "cawp-47548.appspot.com"
     REMOTE_BLOB_NAME: "testGAE" 
